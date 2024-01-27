@@ -11,10 +11,11 @@ import FoodCard from "../../components/FoodCard";
 export default function DrinkPage() {
   const [search, setSearch] = useState<string>("");
   const [drinkList, setDrinkList] = useState<any[]>([]);
+  const [selectCategory, setSelectCategory] = useState<string>("");
   const debounceState = useDebounce(search, 200);
   const alcoholArray = [
-    "국내 맥주",
-    "국외 맥주",
+    "국내맥주",
+    "국외맥주",
     "소주",
     "과일주",
     "브랜디",
@@ -38,12 +39,12 @@ export default function DrinkPage() {
   };
 
   useEffect(() => {
-    const fetchData = async (category: any) => {
-      const data = await GetDrinkListCategory(category);
+    const fetchData = async () => {
+      const data = await GetDrinkListCategory(selectCategory);
       setDrinkList(data);
     };
-    fetchData(debounceState);
-  }, [debounceState]);
+    fetchData();
+  }, [selectCategory]);
 
   const GetDrinkList = async (): Promise<any[]> => {
     try {
@@ -85,21 +86,21 @@ export default function DrinkPage() {
       </div>
       <div className="flex gap-3 mt-5 overflow-scroll">
         {alcoholArray.map((item, idx) => {
-          const buttonRef = useRef<HTMLDivElement>(null);
-          const [select, setSelect] = useState<boolean>(false);
           return (
             <div
               key={idx}
-              className="px-5 py-3 rounded-[12px] border border-gray-300 whitespace-nowrap cursor-pointer"
-              onClick={() => {
-                if (buttonRef.current) {
-                  buttonRef.current.style.borderColor = select
-                    ? "#B9BBB9"
-                    : "#6336E2";
-                  setSelect((prev) => !prev);
-                }
+              className="px-5 py-3 rounded-[12px] border whitespace-nowrap cursor-pointer"
+              style={{
+                borderColor: selectCategory === item ? "#6336E2" : "#B9BBB9",
+                color: selectCategory === item ? "#6336E2" : "#474847",
               }}
-              ref={buttonRef}
+              onClick={() => {
+                if (selectCategory === item) {
+                  setSelectCategory("");
+                  return;
+                }
+                setSelectCategory(item);
+              }}
             >
               {item}
             </div>
