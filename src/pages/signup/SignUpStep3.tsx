@@ -16,7 +16,10 @@ const SignUpStep3 = () => {
 
   return (
     <div className="w-full h-[100vh] flex flex-col px-[23px] py-12 gap-8">
-      <hgroup className="w-full flex items-center gap-3">
+      <hgroup
+        onClick={() => navigate("/signup/step/2")}
+        className="w-full flex items-center gap-3"
+      >
         <LeftArrow />
         <span className="text-[18px] font-normal text-[#747674]">돌아가기</span>
       </hgroup>

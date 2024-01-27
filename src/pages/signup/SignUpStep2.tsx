@@ -18,7 +18,10 @@ const SignUpStep2 = () => {
         console.log(2321323);
       }}
     >
-      <hgroup className="w-full flex items-center gap-3 mt-12">
+      <hgroup
+        onClick={() => navigate("/signup/step/1")}
+        className="w-full flex items-center gap-3 mt-12"
+      >
         <LeftArrow />
         <span className="text-[18px] font-normal text-[#747674]">돌아가기</span>
       </hgroup>

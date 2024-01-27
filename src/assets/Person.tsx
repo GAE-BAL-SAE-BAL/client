@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Person() {
+const Person = () => {
   return (
     <svg
       width="24"
@@ -15,4 +15,6 @@ export default function Person() {
       />
     </svg>
   );
-}
+};
+
+export default Person;
