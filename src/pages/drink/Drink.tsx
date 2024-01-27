@@ -1,13 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import RightArrow_ from "../../assets/RightArrow_";
 import Search from "../../assets/Search";
 import ProductCard from "../../components/ProductCard";
 import useDebounce from "../../hook/useDebounce";
 import Header from "../../components/Header";
 import BottomNavigation from "../../components/BottomNavigation";
+import { instance } from "../../api";
+import FoodCard from "../../components/FoodCard";
 
 export default function DrinkPage() {
   const [search, setSearch] = useState<string>("");
+  const [drinkList, setDrinkList] = useState<any[]>([]);
   const debounceState = useDebounce(search, 200);
   const alcoholArray = [
     "국내 맥주",
@@ -21,6 +24,26 @@ export default function DrinkPage() {
     "막거리",
     "복분자",
   ];
+
+  const GetDrinkList = async (): Promise<any[]> => {
+    try {
+      const {
+        data: { data },
+      } = await instance.get("/api/v1/drink/all");
+      return data;
+    } catch (err: any) {
+      alert(err.response.data.message);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await GetDrinkList();
+      setDrinkList(data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="w-screen px-6 py-[47px] pb-[100px]">
@@ -41,11 +64,12 @@ export default function DrinkPage() {
         <Search />
       </div>
       <div className="flex gap-3 mt-5 overflow-scroll">
-        {alcoholArray.map((item) => {
+        {alcoholArray.map((item, idx) => {
           const buttonRef = useRef<HTMLDivElement>(null);
           const [select, setSelect] = useState<boolean>(false);
           return (
             <div
+              key={idx}
               className="px-5 py-3 rounded-[12px] border border-gray-300 whitespace-nowrap cursor-pointer"
               onClick={() => {
                 if (buttonRef.current) {
@@ -63,21 +87,23 @@ export default function DrinkPage() {
         })}
       </div>
       <div className="grid grid-cols-2 gap-x-[19px] gap-y-[16px] mt-6">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <div className="w-full h-[84px] rounded-[12px] bg-black p-5 col-span-2 flex items-center justify-between">
-          <p className="font-semibold text-white text-md">
-            내가 고른 안주랑
-            <br />잘 어울리는 주류 보러가기
-          </p>
-          <RightArrow_ />
-        </div>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {drinkList.length !== 0 &&
+          drinkList.map(({ image, name, price, id }: any, idx: number) => {
+            return (
+              <>
+                <FoodCard key={id} src={image} price={price} name={name} />
+                {idx === 3 && (
+                  <div className="w-full h-[84px] rounded-[12px] bg-black p-5 col-span-2 flex items-center justify-between">
+                    <p className="font-semibold text-white text-md">
+                      내가 고른 안주랑
+                      <br />잘 어울리는 주류 보러가기
+                    </p>
+                    <RightArrow_ />
+                  </div>
+                )}
+              </>
+            );
+          })}
       </div>
       <BottomNavigation current="주류추천" />
     </div>
