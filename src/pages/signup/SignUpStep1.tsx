@@ -51,7 +51,7 @@ export default function SignUpStep1() {
             />
             {idState && (
               <div
-                className="cursor-pointer"
+                className="flex items-center cursor-pointer"
                 onClick={() => {
                   setIdState("");
                 }}
