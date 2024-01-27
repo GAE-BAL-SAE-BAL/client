@@ -3,14 +3,12 @@ import BottomNavigation from "../../components/BottomNavigation";
 import Logo from "../../assets/Logo";
 import Person from "../../assets/Person";
 import FoodCard from "../../components/FoodCard";
+import Header from "../../components/Header";
 
 const Snack = () => {
   return (
     <div className="w-full px-[23px] gap-8 py-12 pb-24 flex flex-col">
-      <hgroup className="flex items-center justify-between">
-        <Logo />
-        <Person />
-      </hgroup>
+      <Header />
       <span className="text-[20px] font-[600]">
         주류와 어울리는
         <br />
