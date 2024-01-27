@@ -9,7 +9,7 @@ export const Layout = styled.div`
 `;
 
 export const Title = styled.p`
-  color: var(--Black, #000);
+  color: #000;
   font-family: "Pretendard Variable";
   font-size: 30px;
   font-style: normal;
@@ -18,7 +18,7 @@ export const Title = styled.p`
 `;
 
 export const Desc = styled.p`
-  color: var(--Gray-2, #747674);
+  color: #747674;
   font-family: "Pretendard Variable";
   font-size: 16px;
   font-style: normal;

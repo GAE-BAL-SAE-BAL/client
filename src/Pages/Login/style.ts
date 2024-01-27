@@ -30,6 +30,11 @@ export const Input = styled.input`
   }
 `;
 
+export const Icon = styled.div`
+  position: absolute;
+  right: 30px;
+`;
+
 export const ForgotPassword = styled.div`
   display: flex;
   justify-content: space-between;
@@ -37,7 +42,7 @@ export const ForgotPassword = styled.div`
 `;
 
 export const Desc = styled.p`
-  color: var(--Gray-2, #747674);
+  color: #747674;
   font-family: "Pretendard Variable";
   font-size: 14px;
   font-style: normal;
@@ -46,7 +51,7 @@ export const Desc = styled.p`
 `;
 
 export const Find = styled.p`
-  color: var(--colors-Gray-gray-800, #474847);
+  color: #474847;
   font-family: "Pretendard Variable";
   font-size: 14px;
   font-style: normal;
@@ -67,13 +72,13 @@ export const Submit = styled.div`
 export const NextButton = styled.button`
   width: 100%;
   border-radius: 12px;
-  background: var(--colors-Gray-gray-200, #d1d2d1);
   padding: 13px 22px;
-  color: #a2a4a2;
+  color: ${(props) => (props.disabled ? "#fff" : "#ffffff")};
+  background: ${(props) => (props.disabled ? "#a2a4a2" : "#6336e2")};
 `;
 
 export const Or = styled.p`
-  color: var(--Gray-1, #a2a4a2);
+  color: #a2a4a2;
   font-family: "Pretendard Variable";
   font-size: 14px;
   font-style: normal;
@@ -82,7 +87,7 @@ export const Or = styled.p`
 `;
 
 export const ToRegister = styled.p`
-  color: var(--colors-Gray-gray-800, #474847);
+  color: #474847;
   font-family: "Pretendard Variable";
   font-size: 16px;
   font-style: normal;
