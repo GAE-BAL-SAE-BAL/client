@@ -1,19 +1,15 @@
 import React from "react";
-import Logo from "../../assets/Logo";
-import Person from "../../assets/Person";
 import RightArrow from "../../assets/RightArrow";
 import RightArrowWhite from "../../assets/RightArrowWhite";
 import MainCard from "../../components/MainCard";
 import BottomNavigation from "../../components/BottomNavigation";
+import Header from "../../components/Header";
 
 const Main = () => {
   return (
     <>
       <div className="w-full px-[23px] gap-8 py-12 pb-24 flex flex-col">
-        <hgroup className="flex items-center justify-between">
-          <Logo />
-          <Person />
-        </hgroup>
+        <Header />
         <main className="relative h-[71vh]">
           <img className="absolute" src="/main.png" alt="main" />
           <div className="absolute top-[280px] left-[14px] rounded-[16px] bg-[#00000033] px-[20px] py-[40px] flex flex-col gap-[12px] border-[1px] border-solid border-[#FFFFFF66]">
