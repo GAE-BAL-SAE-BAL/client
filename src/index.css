@@ -12,7 +12,14 @@
     "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     sans-serif;
 }
+.scroll::-webkit-scrollbar {
+  display: none;
+}
 
+.scroll {
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
 .title-lg {
   font-size: 30px;
   line-height: 120%;
