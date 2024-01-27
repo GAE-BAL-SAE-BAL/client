@@ -12,6 +12,18 @@ const Login = () => {
     password: "",
   });
 
+  const handleClickLogin = async () => {
+    try {
+      const { data } = await instance.post("/api/v1/user/login", formState);
+      alert("로그인에 성공했어요!");
+      localStorage.setItem("accessToken", data.data.accessToken);
+      localStorage.setItem("refreshToken", data.data.refreshToken);
+      navigate("/");
+    } catch (err: any) {
+      alert(err.response.data.message);
+    }
+  };
+
   const handleChange = (e: any) => {
     setFormState({
       ...formState,
@@ -71,10 +83,10 @@ const Login = () => {
       </S.Info>
       <S.Submit>
         <S.NextButton
-          onClick={handleLoginClick}
+          onClick={handleClickLogin}
           disabled={!formState.userAccount || !formState.password}
         >
-          다음
+          로그인
         </S.NextButton>
         <S.Or>또는</S.Or>
         <Link to="/signup/step/1">

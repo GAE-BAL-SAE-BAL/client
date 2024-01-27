@@ -12,6 +12,8 @@ import MemberShip from "./pages/main/MemberShip";
 import MemberShipBuy from "./pages/main/MemberShipBuy";
 import MemberShipPay from "./pages/main/MemberShipPay";
 import Pay from "./pages/Pay";
+import Detail from "./pages/main/Detail";
+import Cheerup from "./pages/main/Cheerup";
 
 const App = () => {
   return (
@@ -23,7 +25,10 @@ const App = () => {
           <Route path="/pay" element={<Pay />} />
           <Route path="/login" element={<Login />} />
           <Route path="/drink" element={<AlcoholPage />} />
+          <Route path="/login/:id" element={<Detail />} />
+          <Route path="/drink/:id" element={<Detail />} />
           <Route path="/snack" element={<Snack />} />
+          <Route path="/cheerup" element={<Cheerup />} />
           <Route path="/membership" element={<MemberShip />} />
           <Route path="/membership/buy" element={<MemberShipBuy />} />
           <Route path="/membership/pay" element={<MemberShipPay />} />

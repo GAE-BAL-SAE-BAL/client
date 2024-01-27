@@ -5,10 +5,25 @@ import { useNavigate } from "react-router-dom";
 import ArrowUp from "../../assets/ArrowUp";
 import ArrowDown from "../../assets/ArrowDown";
 import { numberWithCommas } from "../../helpers/numberWithCommas.helper";
+import { instance } from "../../api";
 
 const MemberShipPay = () => {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+
+  const handleAddSubscribe = async () => {
+    await instance.post(
+      "/api/v1/user/subscription",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
+    alert("구독에 성공했어요!");
+    navigate("/membership");
+  };
 
   return (
     <div className=" left-0 top-0 mypage w-full h-full px-[23px] gap-8 py-12 pb-[16px] flex flex-col bg-white">
@@ -76,7 +91,7 @@ const MemberShipPay = () => {
       </main>
       <div className="flex flex-col gap-3">
         <button
-          onClick={() => navigate("/pay")}
+          onClick={handleAddSubscribe}
           className="w-full px-[22px] py-[13px] bg-[#6336E2] text-white rounded-[12px]"
         >
           토스페이로 결제하기

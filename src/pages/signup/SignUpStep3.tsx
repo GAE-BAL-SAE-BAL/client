@@ -21,7 +21,10 @@ const SignUpStep3 = () => {
 
   const handleSignupClick = async () => {
     try {
-      await instance.post("/api/v1/user/join", signup);
+      await instance.post("/api/v1/user/join", {
+        ...signup,
+        anything: "asdasdsa",
+      });
       alert("회원가입에 성공했어요!");
       navigate("/login");
     } catch (err: any) {
