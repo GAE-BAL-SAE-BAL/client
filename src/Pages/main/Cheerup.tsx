@@ -18,7 +18,7 @@ const Cheerup = () => {
         >
           <AnimationImage
             onClick={(e) => {
-              e.preventDefault();
+              e.stopPropagation();
             }}
           >
             <img src="/card.png" alt="card" className="w-[90vw] font" />
