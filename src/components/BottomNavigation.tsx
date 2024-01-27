@@ -8,7 +8,7 @@ import classNames from "classnames";
 const BottomNavigation = ({ current }: { current: string }) => {
   const navigate = useNavigate();
   return (
-    <footer className="w-full h-20 flex items-center justify-between fixed bottom-0 left-0 border-t-[1px] border-solid border-[#E8E8E9] px-[24px]">
+    <footer className="w-full bg-white h-20 flex items-center justify-between fixed bottom-0 left-0 border-t-[1px] border-solid border-[#E8E8E9] px-[24px]">
       <div
         onClick={() => navigate("/")}
         className="flex flex-col items-center justify-center gap-1 w-[60px] "

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { Link } from "react-router-dom";
 
-import LoginHeader from "../../Components/LoginHeader";
+import LoginHeader from "../../components/LoginHeader";
 
 const Login = () => {
   const [formState, setFormState] = useState({
@@ -31,8 +31,7 @@ const Login = () => {
               handleChange(e);
             }}
           />
-          <S.Icon>
-          </S.Icon>
+          <S.Icon></S.Icon>
         </S.Inputs>
         <S.Inputs>
           <S.Title>비밀번호</S.Title>
@@ -44,8 +43,7 @@ const Login = () => {
               handleChange(e);
             }}
           />
-          <S.Icon>
-          </S.Icon>
+          <S.Icon></S.Icon>
         </S.Inputs>
         <S.ForgotPassword>
           <S.Desc>비밀번호를 잊었나요?</S.Desc>
