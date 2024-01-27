@@ -6,7 +6,6 @@ export const Layout = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
 `;
 
 export const Title = styled.p`
