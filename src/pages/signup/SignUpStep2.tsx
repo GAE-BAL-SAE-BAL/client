@@ -12,12 +12,7 @@ const SignUpStep2 = () => {
   const [isHover2, setIsHover2] = useState(false);
 
   return (
-    <div
-      className="w-full h-[100vh] flex flex-col px-[23px] gap-8"
-      onClick={() => {
-        console.log(2321323);
-      }}
-    >
+    <div className="w-full h-[100vh] flex flex-col px-[23px] gap-8">
       <hgroup
         onClick={() => navigate("/signup/step/1")}
         className="w-full flex items-center gap-3 mt-12"
