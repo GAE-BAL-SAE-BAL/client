@@ -1,17 +1,17 @@
 import React from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import LeftArrow from "../assets/arrowLeft.svg";
-import Delete from "../assets/delete.svg";
+import LeftArrow from "../../assets/LeftArrow";
+import Delete from "../../assets/Delete";
 
-export default function IdInputPage() {
+export default function SignUpStep1() {
   const [idState, setIdState] = useState<string>("");
   const inputRef = useRef<HTMLDivElement>(null);
   return (
     <div className="pt-[67px] px-6 flex flex-col justify-between h-screen pb-[42px]">
       <div>
         <div className="flex w-full gap-2 h-[30px] items-center cursor-pointer">
-          <img className="w-2 h-[14px]" src={LeftArrow} alt="" />
+          <LeftArrow />
           <p className="text-sm text-[#828387]">돌아가기</p>
         </div>
         <div className="mt-5">
@@ -50,14 +50,14 @@ export default function IdInputPage() {
               }}
             />
             {idState && (
-              <img
+              <div
+                className="cursor-pointer"
                 onClick={() => {
                   setIdState("");
                 }}
-                className="cursor-pointer"
-                src={Delete}
-                alt=""
-              />
+              >
+                <Delete />
+              </div>
             )}
           </div>
         </div>
