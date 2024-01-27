@@ -7,6 +7,7 @@ import Main from "./pages/main/Main";
 import Snack from "./pages/main/Snack";
 import Modal from "./components/Modal";
 import { Provider as JotaiProvider } from "jotai";
+import MemberShip from "./pages/main/MemberShip";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/snack" element={<Snack />} />
+          <Route path="/membership" element={<MemberShip />} />
           <Route path="/signup/step/1" element={<SignUpStep1 />} />
           <Route path="/signup/step/2" element={<SignUpStep2 />} />
           <Route path="/signup/step/3" element={<SignUpStep3 />} />
