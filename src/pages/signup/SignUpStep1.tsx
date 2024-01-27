@@ -3,14 +3,19 @@ import { useRef } from "react";
 import { useState } from "react";
 import LeftArrow from "../../assets/LeftArrow";
 import Delete from "../../assets/Delete";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpStep1() {
+  const navigate = useNavigate();
   const [idState, setIdState] = useState<string>("");
   const inputRef = useRef<HTMLDivElement>(null);
   return (
     <div className="pt-[67px] px-6 flex flex-col justify-between h-screen pb-[42px]">
       <div>
-        <div className="flex w-full gap-2 h-[30px] items-center cursor-pointer">
+        <div
+          onClick={() => navigate("/login")}
+          className="flex w-full gap-2 h-[30px] items-center cursor-pointer"
+        >
           <LeftArrow />
           <p className="text-sm text-[#828387]">돌아가기</p>
         </div>
