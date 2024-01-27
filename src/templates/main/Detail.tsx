@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header";
+import Header from "../../component/Header";
 import LeftArrowBack from "../../assets/LeftArrowBack";
 import { useLocation, useNavigate } from "react-router-dom";
 import { instance } from "../../api";
 import { numberWithCommas } from "../../helpers/numberWithCommas.helper";
-import BottomNavigation from "../../components/BottomNavigation";
+import BottomNavigation from "../../component/BottomNavigation";
 
 const Detail = () => {
   const { pathname } = useLocation();

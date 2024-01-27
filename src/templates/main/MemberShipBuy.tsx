@@ -1,7 +1,7 @@
 import React from "react";
 import CheckIcon from "../../assets/CheckIcon";
 import ArrowRightPurple from "../../assets/ArrowRightPurple";
-import Header from "../../components/Header";
+import Header from "../../component/Header";
 import LeftArrowBack from "../../assets/LeftArrowBack";
 import { useNavigate } from "react-router-dom";
 
