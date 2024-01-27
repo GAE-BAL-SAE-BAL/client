@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import LoginHeader from "../../components/LoginHeader";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     userAccount: "",
     password: "",
@@ -57,7 +58,7 @@ const Login = () => {
           다음
         </S.NextButton>
         <S.Or>또는</S.Or>
-        <Link to="">
+        <Link to="/signup/step/1">
           <S.ToRegister>회원가입</S.ToRegister>
         </Link>
       </S.Submit>

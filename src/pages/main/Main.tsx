@@ -4,8 +4,10 @@ import RightArrowWhite from "../../assets/RightArrowWhite";
 import MainCard from "../../components/MainCard";
 import BottomNavigation from "../../components/BottomNavigation";
 import Header from "../../components/Header";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="w-full px-[23px] gap-8 py-12 pb-24 flex flex-col">
@@ -24,7 +26,10 @@ const Main = () => {
               <br />
               매달 마지막주 원하는 요일에 보내드려요.
             </p>
-            <button className="text-black bg-white rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]">
+            <button
+              onClick={() => navigate("/membership/buy")}
+              className="text-black bg-white rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]"
+            >
               <span>특별한 날 만들기</span>
               <RightArrow />
             </button>
@@ -41,8 +46,11 @@ const Main = () => {
               <img key={i} src="/mock.png" alt="mock" />
             ))}
           </ul>
-          <button className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]">
-            <span>특별한 날 만들기</span>
+          <button
+            onClick={() => navigate("/drink")}
+            className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]"
+          >
+            <span>주류 보러가기</span>
             <RightArrowWhite />
           </button>
         </main>
@@ -65,8 +73,11 @@ const Main = () => {
               />
             ))}
           </ul>
-          <div className="flex items-center justify-center w-full py-4">
-            <button className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]">
+          <div className="w-full flex items-center justify-center py-4">
+            <button
+              onClick={() => navigate("/snack")}
+              className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]"
+            >
               <span>안주 보러가기</span>
               <RightArrowWhite />
             </button>

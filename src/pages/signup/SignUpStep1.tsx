@@ -1,26 +1,29 @@
 import React from "react";
 import { useRef } from "react";
-import { useState } from "react";
 import LeftArrow from "../../assets/LeftArrow";
 import Delete from "../../assets/Delete";
 import { useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { signupContext } from "../../context";
 
 export default function SignUpStep1() {
   const navigate = useNavigate();
-  const [idState, setIdState] = useState<string>("");
+  const [signup, setSignup] = useAtom(signupContext);
   const inputRef = useRef<HTMLDivElement>(null);
   return (
-    <div className="pt-[67px] px-6 flex flex-col justify-between h-screen pb-[42px]">
+    <div className="px-[23px] gap-8 flex flex-col justify-between h-screen pb-[42px]">
       <div>
-        <div
-          onClick={() => navigate("/login")}
-          className="flex w-full gap-2 h-[30px] items-center cursor-pointer"
+        <hgroup
+          onClick={() => navigate("/signup/step/1")}
+          className="w-full flex items-center gap-3 mt-12"
         >
           <LeftArrow />
-          <p className="text-sm text-[#828387]">돌아가기</p>
-        </div>
+          <span className="text-[18px] font-normal text-[#747674]">
+            돌아가기
+          </span>
+        </hgroup>
         <div className="mt-5">
-          <p className="font-bold title-md">아이디를 입력하세요</p>
+          <p className="font-bold mt-8 title-md">아이디를 입력하세요</p>
           <p className="font-medium caption text-[#B9B9BC] mt-2">
             서비스 사용을 위해 아이디를 입력해 주세요.
           </p>
@@ -39,9 +42,9 @@ export default function SignUpStep1() {
             <input
               className="w-full h-full outline-none p-4 rounded-[12px]"
               placeholder="아이디를 입력해주세요"
-              value={idState}
+              value={signup.userAccount}
               onChange={(e) => {
-                setIdState(e.target.value);
+                setSignup((prev) => ({ ...prev, userAccount: e.target.value }));
               }}
               onFocus={() => {
                 if (inputRef.current) {
@@ -54,11 +57,11 @@ export default function SignUpStep1() {
                   inputRef.current.style.borderColor = "#D0D1D2";
               }}
             />
-            {idState && (
+            {signup.userAccount && (
               <div
                 className="flex items-center cursor-pointer"
                 onClick={() => {
-                  setIdState("");
+                  setSignup((prev) => ({ ...prev, userAccount: "" }));
                 }}
               >
                 <Delete />
@@ -67,7 +70,10 @@ export default function SignUpStep1() {
           </div>
         </div>
       </div>
-      <button className="w-full px-[22px] py-[13px] bg-[#6336E2] text-white rounded-[12px]">
+      <button
+        onClick={() => navigate("/signup/step/2")}
+        className="w-full px-[22px] py-[13px] bg-[#6336E2] text-white rounded-[12px]"
+      >
         다음
       </button>
     </div>
