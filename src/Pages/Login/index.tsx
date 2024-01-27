@@ -32,6 +32,21 @@ const Login = () => {
     });
   };
 
+  const handleLoginClick = async () => {
+    try {
+      const {
+        data: { data },
+      } = await instance.post("/api/v1/user/login", formState);
+
+      alert("로그인에 성공했어요!");
+      localStorage.setItem("access_token", data.accessToken);
+      localStorage.setItem("refresh_token", data.refreshToken);
+      navigate("/");
+    } catch (err: any) {
+      alert(err.response.data.message);
+    }
+  };
+
   return (
     <S.Layout>
       <LoginHeader />

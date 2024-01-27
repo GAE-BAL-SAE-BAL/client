@@ -47,6 +47,21 @@ export default function DrinkPage() {
     );
   };
 
+  useEffect(() => {
+    (async () => {
+      const { data } = await instance.get(
+        `/api/v1/drink?category=${category}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      setDrinkList(data.data);
+      setRegacy(data.data);
+    })();
+  }, [category]);
+
   return (
     <div className="w-screen px-6 py-[47px] pb-[100px]">
       <Header />
@@ -63,6 +78,9 @@ export default function DrinkPage() {
           placeholder="주류를 검색해보세요"
           value={search}
           onChange={({ target: { value } }) => setSearch(value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") handleClick();
+          }}
         />
         <Search onClick={handleClick} type="submit" />
       </form>
@@ -77,6 +95,10 @@ export default function DrinkPage() {
                   "!border-[#6336E2] border-[1px] text-[#6336E2]"
               )}
               onClick={() => {
+                if (category === item) {
+                  setCategory("");
+                  return;
+                }
                 setCategory(item);
               }}
             >
