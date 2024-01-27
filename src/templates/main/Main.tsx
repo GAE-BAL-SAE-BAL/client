@@ -13,6 +13,12 @@ const Main = () => {
   const [snackList, setSnackList] = useState([]);
 
   useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/login");
+    }
+  }, []);
+
+  useEffect(() => {
     (async () => {
       const { data } = await instance.get("/api/v1/drink/all", {
         headers: {
