@@ -18,6 +18,7 @@ const Login = () => {
       alert("로그인에 성공했어요!");
       localStorage.setItem("accessToken", data.data.accessToken);
       localStorage.setItem("refreshToken", data.data.refreshToken);
+      localStorage.setItem("userAccount", data.data.userAccount);
       navigate("/");
     } catch (err: any) {
       alert(err.response.data.message);

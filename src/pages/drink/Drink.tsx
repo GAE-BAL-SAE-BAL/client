@@ -11,11 +11,10 @@ import classNames from "classnames";
 export default function DrinkPage() {
   const [category, setCategory] = useState("");
   const alcoholArray = [
-    "국내 맥주",
-    "국외 맥주",
+    "국내맥주",
+    "수입맥주",
     "소주",
     "과일주",
-    "브랜디",
     "와인",
     "위스키",
     "샴페인",
@@ -71,6 +70,7 @@ export default function DrinkPage() {
         {alcoholArray.map((item) => {
           return (
             <div
+              key={item}
               className={classNames(
                 "px-5 py-3 rounded-[12px] border border-gray-300 whitespace-nowrap cursor-pointer",
                 category === item &&
