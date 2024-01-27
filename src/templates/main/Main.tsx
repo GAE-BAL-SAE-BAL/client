@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import RightArrow from "../../assets/RightArrow";
 import RightArrowWhite from "../../assets/RightArrowWhite";
-import MainCard from "../../components/MainCard";
-import BottomNavigation from "../../components/BottomNavigation";
-import Header from "../../components/Header";
+import MainCard from "../../component/MainCard";
+import BottomNavigation from "../../component/BottomNavigation";
+import Header from "../../component/Header";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../../api";
 

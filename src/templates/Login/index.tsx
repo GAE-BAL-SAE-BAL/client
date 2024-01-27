@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { Link, useNavigate } from "react-router-dom";
 
-import LoginHeader from "../../components/LoginHeader";
+import LoginHeader from "../../component/LoginHeader";
 import { instance } from "../../api";
 
 const Login = () => {

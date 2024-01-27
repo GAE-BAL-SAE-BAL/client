@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Header from "../../components/Header";
-import BottomNavigation from "../../components/BottomNavigation";
+import Header from "../../component/Header";
+import BottomNavigation from "../../component/BottomNavigation";
 import { useModal } from "../../hooks/useModal";
 import { styled } from "styled-components";
 

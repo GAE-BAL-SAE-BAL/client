@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../../components/Header";
+import Header from "../../component/Header";
 import LeftArrowBack from "../../assets/LeftArrowBack";
 import { useNavigate } from "react-router-dom";
 import ArrowUp from "../../assets/ArrowUp";

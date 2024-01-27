@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import RightArrow_ from "../../assets/RightArrow_";
 import Search from "../../assets/Search";
-import Header from "../../components/Header";
-import BottomNavigation from "../../components/BottomNavigation";
+import Header from "../../component/Header";
+import BottomNavigation from "../../component/BottomNavigation";
 import { instance } from "../../api";
-import FoodCard from "../../components/FoodCard";
+import FoodCard from "../../component/FoodCard";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 

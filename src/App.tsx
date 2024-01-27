@@ -1,19 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
-import SignUpStep1 from "./pages/signup/SignUpStep1";
-import SignUpStep2 from "./pages/signup/SignUpStep2";
-import SignUpStep3 from "./pages/signup/SignUpStep3";
-import Main from "./pages/main/Main";
-import AlcoholPage from "./pages/drink/Drink";
-import Snack from "./pages/main/Snack";
-import Modal from "./components/Modal";
+import Login from "./templates/Login";
+import SignUpStep1 from "./templates/signup/SignUpStep1";
+import SignUpStep2 from "./templates/signup/SignUpStep2";
+import SignUpStep3 from "./templates/signup/SignUpStep3";
+import Main from "./templates/main/Main";
+import AlcoholPage from "./templates/drink/Drink";
+import Snack from "./templates/main/Snack";
+import Modal from "./component/Modal";
 import { Provider as JotaiProvider } from "jotai";
-import MemberShip from "./pages/main/MemberShip";
-import MemberShipBuy from "./pages/main/MemberShipBuy";
-import MemberShipPay from "./pages/main/MemberShipPay";
-import Pay from "./pages/Pay";
-import Detail from "./pages/main/Detail";
-import Cheerup from "./pages/main/Cheerup";
+import MemberShip from "./templates/main/MemberShip";
+import MemberShipBuy from "./templates/main/MemberShipBuy";
+import MemberShipPay from "./templates/main/MemberShipPay";
+import Pay from "./templates/Pay";
+import Detail from "./templates/main/Detail";
+import Cheerup from "./templates/main/Cheerup";
 
 const App = () => {
   return (

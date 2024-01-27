@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import BottomNavigation from "../../components/BottomNavigation";
-import FoodCard from "../../components/FoodCard";
-import Header from "../../components/Header";
+import BottomNavigation from "../../component/BottomNavigation";
+import FoodCard from "../../component/FoodCard";
+import Header from "../../component/Header";
 import SearchIcon from "../../assets/SearchIcon";
 import RightArrowBig from "../../assets/RightArrowBig";
 import SnackNotFound from "../../assets/SnackNotFound";
