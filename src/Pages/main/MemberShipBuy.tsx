@@ -29,7 +29,7 @@ const MemberShipBuy = () => {
         <div className="flex items-center gap-1">
           <CheckIcon />
           <span className="text-[16px] font-[400] ">
-            매월 2~3개의 와인과 잘 어울리는 안주
+            매월 1~2개의 와인과 잘 어울리는 안주
           </span>
         </div>
         <div className="flex items-center gap-1">
