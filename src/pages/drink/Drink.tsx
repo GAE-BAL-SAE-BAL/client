@@ -66,6 +66,10 @@ export default function DrinkPage() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setDrinkList((prev) => prev);
+  }, [debounceState]);
+
   return (
     <div className="w-screen px-6 py-[47px] pb-[100px]">
       <Header />
@@ -110,6 +114,7 @@ export default function DrinkPage() {
       <div className="grid grid-cols-2 gap-x-[19px] gap-y-[16px] mt-6">
         {drinkList.length !== 0 &&
           drinkList.map(({ image, name, price, id }: any, idx: number) => {
+            if (!name.includes(debounceState)) return <></>;
             return (
               <>
                 <FoodCard key={id} src={image} price={price} name={name} />
