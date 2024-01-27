@@ -1,17 +1,32 @@
-import React, { useState } from "react";
 import LeftArrow from "../../assets/LeftArrow";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
+import { useAtom } from "jotai";
+import { signupContext } from "../../context";
+import { instance } from "../../api";
 
 const SignUpStep3 = () => {
-  const [preferDrink, setPreferDrink] = useState([] as string[]);
+  const [signup, setSignup] = useAtom(signupContext);
   const navigate = useNavigate();
 
   const handleAddPreferDrink = (drink: string) => {
-    if (preferDrink.length === 3) return;
-    if (preferDrink.includes(drink))
-      return setPreferDrink((prev) => prev.filter((title) => title !== drink));
-    setPreferDrink((prev) => [...prev, drink]);
+    if (signup.anything.includes(drink))
+      return setSignup((prev) => ({
+        ...prev,
+        anything: prev.anything.filter((title) => title !== drink),
+      }));
+    if (signup.anything.length === 3) return;
+    setSignup((prev) => ({ ...prev, anything: [...prev.anything, drink] }));
+  };
+
+  const handleSignupClick = async () => {
+    try {
+      await instance.post("/api/v1/user/join", signup);
+      alert("회원가입에 성공했어요!");
+      navigate("/login");
+    } catch (err: any) {
+      alert(err.response.data.message);
+    }
   };
 
   return (
@@ -33,7 +48,7 @@ const SignUpStep3 = () => {
           <div className="w-[48px] mt-auto h-[4px] bg-[#E8E8E9] rounded-full" />
           <div className="w-[48px] mt-auto h-[4px] bg-[#6336E2] rounded-full" />
         </div>
-        <main className="mt-[54px] h-full flex flex-col gap-[20px]">
+        <main className="mt-[20px] h-full flex flex-col gap-[20px]">
           <div className="w-full flex flex-wrap gap-[12px]">
             {[
               "국내 맥주",
@@ -52,7 +67,7 @@ const SignUpStep3 = () => {
                 onClick={() => handleAddPreferDrink(drink)}
                 className={classNames(
                   "flex items-center w-fit rounded-[12px] justify-center border-[1px] border-solid py-[12px] px-[20px]",
-                  preferDrink.includes(drink)
+                  signup.anything.includes(drink)
                     ? "border-[#6336E2] text-[#6336E2]"
                     : "border-[#DBDCDE] text-[#000]"
                 )}
@@ -63,17 +78,20 @@ const SignUpStep3 = () => {
           </div>
         </main>
         <div className="flex flex-col gap-[12px]">
-          <button className="w-full py-[13px] border-[1px] border-solid border-[#6336E2] rounded-[12px]">
+          <button
+            onClick={handleSignupClick}
+            className="w-full py-[13px] border-[1px] border-solid border-[#6336E2] rounded-[12px]"
+          >
             <span className="text-[18px] font-[600] text-[#6336E2]">
               넘어갈래요
             </span>
           </button>
           <button
-            onClick={() => navigate("/")}
-            disabled={!preferDrink.length}
+            onClick={handleSignupClick}
+            disabled={!signup.anything.length}
             className="w-full py-[13px] border-[1px] bg-[#6336E2] rounded-[12px] text-[white] disabled:bg-[#D1D2D1] disabled:text-[#A2A4A2]"
           >
-            <span className="text-[18px] font-[600]">다음</span>
+            <span className="text-[18px] font-[600]">회원가입</span>
           </button>
         </div>
       </hgroup>

@@ -5,3 +5,9 @@ export const modalContext = atom<ModalState>({
   visible: false,
   component: null,
 });
+
+export const signupContext = atom({
+  userAccount: "",
+  password: "",
+  anything: [] as Array<string>,
+});
