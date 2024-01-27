@@ -11,7 +11,9 @@ const MyPageModal = () => {
       <Header />
       <hgroup className="flex gap-[12px] items-center">
         <img className="w-[36px]" src="/profile.png" alt="profile" />
-        <span className="text-[18px]">abcd1234</span>
+        <span className="text-[18px]">
+          {localStorage.getItem("userAccount")}
+        </span>
       </hgroup>
       <div className="w-full h-[1px] bg-[#EBEBEB]" />
       <span
