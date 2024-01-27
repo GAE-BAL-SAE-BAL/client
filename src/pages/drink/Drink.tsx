@@ -25,6 +25,26 @@ export default function DrinkPage() {
     "복분자",
   ];
 
+  const GetDrinkListCategory = async (category: any): Promise<any[]> => {
+    try {
+      const {
+        data: { data },
+      } = await instance.get(`/api/v1/drink?category=${category}`);
+      return data;
+    } catch (err: any) {
+      alert(err.response.data.message);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async (category: any) => {
+      const data = await GetDrinkListCategory(category);
+      setDrinkList(data);
+    };
+    fetchData(debounceState);
+  }, [debounceState]);
+
   const GetDrinkList = async (): Promise<any[]> => {
     try {
       const {
