@@ -37,12 +37,9 @@ const ModalContainer = styled.div`
   align-items: center;
   flex-direction: column;
   position: fixed;
-  top: 50%;
-  left: 50%;
   width: fit-content;
   height: fit-content;
   z-index: 20;
-  transform: translate(-50%, -50%);
 
   ${({ hidden }) =>
     hidden &&

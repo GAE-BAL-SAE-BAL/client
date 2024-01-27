@@ -60,3 +60,7 @@ input[type="password"] {
   font: small-caption;
   font-size: 16px;
 }
+
+.mypage {
+  border-radius: 0px 0px 20px 20px;
+}
