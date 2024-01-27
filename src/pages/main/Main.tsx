@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RightArrow from "../../assets/RightArrow";
 import RightArrowWhite from "../../assets/RightArrowWhite";
 import MainCard from "../../components/MainCard";
 import BottomNavigation from "../../components/BottomNavigation";
 import Header from "../../components/Header";
+import { useNavigate } from "react-router-dom";
+import { instance } from "../../api";
 
 const Main = () => {
+  const navigate = useNavigate();
+  const [drinkList, setDrinkList] = useState([]);
+  const [snackList, setSnackList] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await instance.get("/api/v1/drink/all", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      setDrinkList(data.data);
+    })();
+    (async () => {
+      const { data } = await instance.get("/api/v1/snack/all", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      setSnackList(data.data);
+    })();
+  }, []);
+
   return (
     <>
       <div className="w-full px-[23px] gap-8 py-12 pb-24 flex flex-col">
@@ -24,7 +49,10 @@ const Main = () => {
               <br />
               매달 마지막주 원하는 요일에 보내드려요.
             </p>
-            <button className="text-black bg-white rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]">
+            <button
+              onClick={() => navigate("/membership/buy")}
+              className="text-black bg-white rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]"
+            >
               <span>특별한 날 만들기</span>
               <RightArrow />
             </button>
@@ -37,12 +65,21 @@ const Main = () => {
             다양한 주류를 즐겨보세요
           </span>
           <ul className="ml-[24px] flex gap-1 overflow-scroll">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <img key={i} src="/mock.png" alt="mock" />
+            {drinkList.map((drink: any) => (
+              <img
+                className="w-[110px] h-[140px] rounded-[12px]"
+                key={drink.id}
+                src={drink.image}
+                alt="images"
+                onClick={() => navigate(`/drink/${drink.id}`)}
+              />
             ))}
           </ul>
-          <button className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]">
-            <span>특별한 날 만들기</span>
+          <button
+            onClick={() => navigate("/drink")}
+            className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]"
+          >
+            <span>주류 보러가기</span>
             <RightArrowWhite />
           </button>
         </main>
@@ -56,17 +93,21 @@ const Main = () => {
             다양한 안주를 만나보세요
           </span>
           <ul className="flex gap-3 overflow-scroll">
-            {Array.from({ length: 20 }).map((_, i) => (
+            {snackList.map((snack: any) => (
               <MainCard
-                key={i}
-                src="/mock-b.png"
-                name="소고기 스테이크 A급"
-                price={999999}
+                onClick={() => navigate(`/snack/${snack.id}`)}
+                key={snack.id}
+                src={snack.image}
+                name={snack.name}
+                price={snack.price}
               />
             ))}
           </ul>
-          <div className="flex items-center justify-center w-full py-4">
-            <button className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]">
+          <div className="w-full flex items-center justify-center py-4">
+            <button
+              onClick={() => navigate("/snack")}
+              className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]"
+            >
               <span>안주 보러가기</span>
               <RightArrowWhite />
             </button>

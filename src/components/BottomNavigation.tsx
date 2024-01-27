@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DrinkIcon from "../assets/DrinkIcon";
 import FoodIcon from "../assets/FoodIcon";
 import classNames from "classnames";
+import CheerUpIcon from "../assets/CheerUpIcon";
 
 const BottomNavigation = ({ current }: { current: string }) => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const BottomNavigation = ({ current }: { current: string }) => {
     <footer className="w-full bg-white h-20 flex items-center justify-between fixed bottom-0 left-0 border-t-[1px] border-solid border-[#E8E8E9] px-[24px]">
       <div
         onClick={() => navigate("/")}
-        className="flex flex-col items-center justify-center gap-1 w-[60px] "
+        className="flex flex-col items-center justify-center gap-1 w-[60px]"
       >
         <HomeIcon isCurrent={current === "홈"} />
         <span
@@ -53,9 +54,9 @@ const BottomNavigation = ({ current }: { current: string }) => {
       </div>
       <div
         onClick={() => navigate("/cheerup")}
-        className="flex flex-col items-center justify-center gap-1 w-[60px] "
+        className="flex flex-col pt-[5.5px] items-center justify-center gap-1 w-[60px] "
       >
-        <HomeIcon isCurrent={current === "응원카드"} />
+        <CheerUpIcon isCurrent={current === "응원카드"} />
         <span
           className={classNames(
             " text-[12px] font-[400]",

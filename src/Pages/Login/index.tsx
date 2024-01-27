@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import LoginHeader from "../../components/LoginHeader";
+import { instance } from "../../api";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     userAccount: "",
     password: "",
   });
+
+  const handleClickLogin = async () => {
+    try {
+      const { data } = await instance.post("/api/v1/user/login", formState);
+      alert("로그인에 성공했어요!");
+      localStorage.setItem("accessToken", data.data.accessToken);
+      localStorage.setItem("refreshToken", data.data.refreshToken);
+      navigate("/");
+    } catch (err: any) {
+      alert(err.response.data.message);
+    }
+  };
 
   const handleChange = (e: any) => {
     setFormState({
@@ -53,11 +67,14 @@ const Login = () => {
         </S.ForgotPassword>
       </S.Info>
       <S.Submit>
-        <S.NextButton disabled={!formState.userAccount || !formState.password}>
-          다음
+        <S.NextButton
+          onClick={handleClickLogin}
+          disabled={!formState.userAccount || !formState.password}
+        >
+          로그인
         </S.NextButton>
         <S.Or>또는</S.Or>
-        <Link to="">
+        <Link to="/signup/step/1">
           <S.ToRegister>회원가입</S.ToRegister>
         </Link>
       </S.Submit>

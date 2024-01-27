@@ -1,14 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BottomNavigation from "../../components/BottomNavigation";
 import FoodCard from "../../components/FoodCard";
 import Header from "../../components/Header";
 import SearchIcon from "../../assets/SearchIcon";
 import RightArrowBig from "../../assets/RightArrowBig";
 import SnackNotFound from "../../assets/SnackNotFound";
+import { instance } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 const Snack = () => {
-  const [result, setResult] = useState(["", "", ""]);
-  // const [result, setResult] = useState([]);
+  const [snackList, setSnackList] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await instance.get("/api/v1/snack/all", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      setSnackList(data.data);
+      setRegacy(data.data);
+    })();
+  }, []);
+  const [search, setSearch] = useState("");
+  const [regacy, setRegacy] = useState([]);
+
+  const handleClick = () => {
+    if (!search.length) {
+      return setSnackList(regacy);
+    }
+    setSnackList((prev) =>
+      prev.filter((drink: any) => drink.name.includes(search))
+    );
+  };
+
   return (
     <div className="w-full px-[23px] gap-8 py-12 pb-24 flex flex-col">
       <Header />
@@ -19,36 +45,50 @@ const Snack = () => {
       </span>
       <div className="relative h-[58px]">
         <input
+          onChange={({ target: { value } }) => setSearch(value)}
+          value={search}
           className="p-[16px] absolute w-full rounded-[12px] border-[1px] border-solid border-[#D0D1D2]"
           placeholder="안주를 검색해보세요"
         />
-        <SearchIcon className="absolute right-4 top-[17px]" />
+        <SearchIcon
+          onClick={handleClick}
+          className="absolute right-4 top-[17px]"
+        />
       </div>
-      {result.length ? (
+      {snackList.length ? (
         <main className="flex flex-wrap w-full gap-[19px]">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <FoodCard
-              key={i}
-              src="/mock_snack.png"
-              name="손쉽게 구워 맛있게 먹는 소고기 스테이크"
-              price={24580}
-            />
-          ))}
-          <div className="w-full p-[20px] flex items-center justify-between bg-black rounded-[12px]">
+          {snackList
+            .slice(0, Math.round(snackList.length / 2))
+            .map((snack: any) => (
+              <FoodCard
+                onClick={() => navigate(`/snack/${snack.id}`)}
+                key={snack.id}
+                src={snack.image}
+                name={snack.name}
+                price={snack.price}
+              />
+            ))}
+          <div
+            onClick={() => navigate("/drink")}
+            className="w-full p-[20px] flex items-center justify-between bg-black rounded-[12px]"
+          >
             <span className="text-[16px] font-[600] text-white ">
               내가 고른 안주랑
               <br />잘 어울리는 주류 보러가기
             </span>
             <RightArrowBig />
           </div>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <FoodCard
-              key={i}
-              src="/mock_snack.png"
-              name="손쉽게 구워 맛있게 먹는 소고기 스테이크"
-              price={24580}
-            />
-          ))}
+          {snackList
+            .slice(Math.round(snackList.length / 2), snackList.length)
+            .map((snack: any) => (
+              <FoodCard
+                onClick={() => navigate(`/snack/${snack.id}`)}
+                key={snack.id}
+                src={snack.image}
+                name={snack.name}
+                price={snack.price}
+              />
+            ))}
         </main>
       ) : (
         <main className="w-full h-[50vh] flex flex-col gap-[12px] items-center justify-center">
