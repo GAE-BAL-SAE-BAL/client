@@ -69,7 +69,7 @@ const Main = () => {
               />
             ))}
           </ul>
-          <div className="w-full flex items-center justify-center py-4">
+          <div className="flex items-center justify-center w-full py-4">
             <button className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]">
               <span>안주 보러가기</span>
               <RightArrowWhite />
