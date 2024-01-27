@@ -3,6 +3,7 @@ import * as S from "./style";
 import { Link, useNavigate } from "react-router-dom";
 
 import LoginHeader from "../../components/LoginHeader";
+import { instance } from "../../api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +17,16 @@ const Login = () => {
       ...formState,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleLoginClick = async () => {
+    try {
+      await instance.post("/api/v1/user/login", formState);
+      alert("로그인에 성공했어요!");
+      navigate("/");
+    } catch (err: any) {
+      alert(err.response.data.message);
+    }
   };
 
   return (
@@ -54,7 +65,10 @@ const Login = () => {
         </S.ForgotPassword>
       </S.Info>
       <S.Submit>
-        <S.NextButton disabled={!formState.userAccount || !formState.password}>
+        <S.NextButton
+          onClick={handleLoginClick}
+          disabled={!formState.userAccount || !formState.password}
+        >
           다음
         </S.NextButton>
         <S.Or>또는</S.Or>
