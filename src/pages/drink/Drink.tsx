@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import RightArrow_ from "../../assets/RightArrow_";
 import Search from "../../assets/Search";
-import GlobalHeader from "../../components/GlobalHeader";
 import ProductCard from "../../components/ProductCard";
 import useDebounce from "../../hook/useDebounce";
+import Header from "../../components/Header";
+import BottomNavigation from "../../components/BottomNavigation";
 
-export default function AlcoholPage() {
+export default function DrinkPage() {
   const [search, setSearch] = useState<string>("");
   const debounceState = useDebounce(search, 200);
   const alcoholArray = [
@@ -22,8 +23,8 @@ export default function AlcoholPage() {
   ];
 
   return (
-    <div className="w-screen px-6 py-[47px]">
-      <GlobalHeader />
+    <div className="w-screen px-6 py-[47px] pb-[100px]">
+      <Header />
       <p className="font-semibold text-gray-800 title-sm mt-[20px]">
         당신의 즐거움을 위한
         <br /> 특별한 주류 추천을 받아보세요.
@@ -78,6 +79,7 @@ export default function AlcoholPage() {
         <ProductCard />
         <ProductCard />
       </div>
+      <BottomNavigation current="주류추천" />
     </div>
   );
 }

@@ -13,7 +13,7 @@ const MemberShip = () => {
         <span>술래잡기 멤버십</span>
       </hgroup>
       <div className="w-full h-[1px] bg-[#EBEBEB]" />
-      <main className="px-6 flex flex-col gap-4">
+      <main className="flex flex-col gap-4 px-6">
         <span className="text-[18px] font-[600]">술래잡기 프리미엄</span>
         <div className="flex items-center gap-1">
           <CheckIcon />
@@ -42,7 +42,7 @@ const MemberShip = () => {
         </hgroup>
       </div>
       <div className="-mt-8 w-full border-t-[1px] border-b-[1px] border-solid border-[#E8E8E8] py-7 flex items-center gap-[12px]">
-        <hgroup className="px-8 flex items-center justify-between w-full">
+        <hgroup className="flex items-center justify-between w-full px-8">
           <span className="text-[#A2A4A2] text-[16px] font-[600]">
             멤버십 해지하기
           </span>
