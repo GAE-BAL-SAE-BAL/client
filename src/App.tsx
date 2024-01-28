@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Login from "./templates/Login";
 import SignUpStep1 from "./templates/signup/SignUpStep1";
 import SignUpStep2 from "./templates/signup/SignUpStep2";
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/signup/step/3" element={<SignUpStep3 />} />
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </JotaiProvider>
   );
 };

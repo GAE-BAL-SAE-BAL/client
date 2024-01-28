@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import LoginHeader from "../../component/LoginHeader";
 import { instance } from "../../api";
@@ -15,13 +16,13 @@ const Login = () => {
   const handleClickLogin = async () => {
     try {
       const { data } = await instance.post("/api/v1/user/login", formState);
-      alert("로그인에 성공했어요!");
+      toast.success("로그인에 성공했어요!");
       localStorage.setItem("accessToken", data.data.accessToken);
       localStorage.setItem("refreshToken", data.data.refreshToken);
       localStorage.setItem("userAccount", data.data.userAccount);
       navigate("/");
     } catch (err: any) {
-      alert(err.response.data.message);
+      toast.error(err.response.data.message);
     }
   };
 

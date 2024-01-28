@@ -5,6 +5,7 @@ import CheckIcon from "../../assets/CheckIcon";
 import RightArrowGray from "../../assets/RightArrowGray";
 import { instance } from "../../api";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const MemberShip = () => {
   const navigate = useNavigate();
@@ -18,7 +19,9 @@ const MemberShip = () => {
         },
       }
     );
-    alert("멤버십이 해지되었어요!");
+    toast("멤버십이 해지되었어요!", {
+      icon: "ℹ",
+    });
     navigate("/");
   };
   const [isOK, setIsOK] = useState(false);

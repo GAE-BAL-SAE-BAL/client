@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { useAtom } from "jotai";
 import { signupContext } from "../../context";
 import { instance } from "../../api";
+import toast from 'react-hot-toast'
 
 const SignUpStep3 = () => {
   const [signup, setSignup] = useAtom(signupContext);
@@ -25,10 +26,10 @@ const SignUpStep3 = () => {
         ...signup,
         anything: "asdasdsa",
       });
-      alert("회원가입에 성공했어요!");
+      toast.success("회원가입에 성공했어요!");
       navigate("/login");
     } catch (err: any) {
-      alert(err.response.data.message);
+      toast.error(err.response.data.message);
     }
   };
 
@@ -36,7 +37,7 @@ const SignUpStep3 = () => {
     <div className="w-full h-[100vh] flex flex-col px-[23px] py-12 gap-8">
       <hgroup
         onClick={() => navigate("/signup/step/2")}
-        className="w-full flex items-center gap-3"
+        className="flex items-center w-full gap-3"
       >
         <LeftArrow />
         <span className="text-[18px] font-normal text-[#747674]">돌아가기</span>
