@@ -6,6 +6,7 @@ import ArrowUp from "../../assets/ArrowUp";
 import ArrowDown from "../../assets/ArrowDown";
 import { numberWithCommas } from "../../helpers/numberWithCommas.helper";
 import { instance } from "../../api";
+import toast from "react-hot-toast";
 
 const MemberShipPay = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -21,7 +22,7 @@ const MemberShipPay = () => {
         },
       }
     );
-    alert("구독에 성공했어요!");
+    toast.success("구독에 성공했어요!");
     navigate("/membership");
   };
 
@@ -46,14 +47,14 @@ const MemberShipPay = () => {
         {isOpen && (
           <>
             <div className="w-full h-[1px] bg-[#EBEBEB]" />
-            <div className="w-full flex flex-col gap-1">
+            <div className="flex flex-col w-full gap-1">
               <span className="text-[14px] ">받는 분</span>
               <input
                 placeholder="받는 분을 입력해주세요."
                 className="border-[1px] w-full px-[16px] h-[56px] hover:border-[#6336E2] rounded-[12px] outline-none border-solid border-[#D1D2D1]"
               />
             </div>
-            <div className="w-full flex flex-col gap-1">
+            <div className="flex flex-col w-full gap-1">
               <span className="text-[14px] ">우편번호</span>
               <div className="flex items-center gap-2">
                 <input
@@ -65,14 +66,14 @@ const MemberShipPay = () => {
                 </button>
               </div>
             </div>
-            <div className="w-full flex flex-col gap-1">
+            <div className="flex flex-col w-full gap-1">
               <span className="text-[14px] ">상세주소</span>
               <input
                 placeholder="상세주소를 입력해주세요."
                 className="border-[1px] w-full px-[16px] h-[56px] hover:border-[#6336E2] rounded-[12px] outline-none border-solid border-[#D1D2D1]"
               />
             </div>
-            <div className="w-full flex flex-col gap-1">
+            <div className="flex flex-col w-full gap-1">
               <span className="text-[14px] ">연락처</span>
               <input
                 placeholder="-없이 입력해주세요."
