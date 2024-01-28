@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "https://15.164.38.42",
+  baseURL: "http://15.164.38.42:8080",
   withCredentials: true,
 });
