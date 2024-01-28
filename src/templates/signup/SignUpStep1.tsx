@@ -14,8 +14,8 @@ export default function SignUpStep1() {
     <div className="px-[23px] gap-8 flex flex-col justify-between h-screen pb-[42px]">
       <div>
         <hgroup
-          onClick={() => navigate("/signup/step/1")}
-          className="w-full flex items-center gap-3 mt-12"
+          onClick={() => navigate(-1)}
+          className="flex items-center w-full gap-3 mt-12"
         >
           <LeftArrow />
           <span className="text-[18px] font-normal text-[#747674]">
@@ -23,7 +23,7 @@ export default function SignUpStep1() {
           </span>
         </hgroup>
         <div className="mt-5">
-          <p className="font-bold mt-8 title-md">아이디를 입력하세요</p>
+          <p className="mt-8 font-bold title-md">아이디를 입력하세요</p>
           <p className="font-medium caption text-[#B9B9BC] mt-2">
             서비스 사용을 위해 아이디를 입력해 주세요.
           </p>
