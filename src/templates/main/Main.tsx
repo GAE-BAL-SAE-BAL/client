@@ -19,22 +19,24 @@ const Main = () => {
   }, []);
 
   useEffect(() => {
-    (async () => {
-      const { data } = await instance.get("/api/v1/drink/all", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
-      setDrinkList(data.data);
-    })();
-    (async () => {
-      const { data } = await instance.get("/api/v1/snack/all", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
-      setSnackList(data.data);
-    })();
+    if (localStorage.getItem("accessToken")) {
+      (async () => {
+        const { data } = await instance.get("/api/v1/drink/all", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
+        setDrinkList(data.data);
+      })();
+      (async () => {
+        const { data } = await instance.get("/api/v1/snack/all", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
+        setSnackList(data.data);
+      })();
+    }
   }, []);
 
   return (
@@ -109,7 +111,7 @@ const Main = () => {
               />
             ))}
           </ul>
-          <div className="w-full flex items-center justify-center py-4">
+          <div className="flex items-center justify-center w-full py-4">
             <button
               onClick={() => navigate("/snack")}
               className="text-white bg-[#6336E2] rounded-full w-fit flex items-center gap-1 py-[12px] px-[16px]"
